@@ -22,12 +22,8 @@ def AddRectangle(ml,mh,al,ah,lw,ls,edgecolor,alpha):
 from matplotlib.collections import PatchCollection
 from matplotlib.patches import Rectangle
 
-color10 = 'purple'
-color = 'firebrick'
-color50 = 'orange'
-
 import matplotlib
-cmap = matplotlib.cm.get_cmap('plasma')
+cmap = matplotlib.cm.get_cmap('magma')
 n = 5
 ncolors = np.linspace(0,1,n)
 color10,color,color50 = cmap(ncolors)[1:4]
