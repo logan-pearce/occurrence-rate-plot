@@ -34,8 +34,10 @@ plt.plot(p['pl_orbsmax'],p['pl_bmassj'], marker='.', markersize=3, color='grey',
 # Mark snowlines:
 plt.axvline(x=3, ls='--', lw=0.5, color='grey')
 plt.axvline(x=0.2, ls='--', lw=0.5, color='grey')
-plt.annotate('Snowline of Sun-like star', xy = (3.5,4e-5), rotation=90)
-plt.annotate('Snowline of low-mass M', xy = (0.23,4e-5), rotation=90)
+plt.annotate('Approx. Loc. of Snowline \n of Sun-like star', xy = (3.5,4e-5), rotation=90,
+            fontsize = 8)
+plt.annotate('Approx. Loc. of Snowline \n of low-mass M star', xy = (0.23,4e-5), rotation=90,
+            fontsize = 8)
 
 # Plot solar system planets
 plt.scatter(30.07,0.0539531012, marker='s', color='black')
