@@ -3,6 +3,8 @@ import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 
+import warnings
+warnings.filterwarnings('ignore')
 data = {
     "Reference":[
         'Lafreniere+ 2007','Lafreniere+ 2007','Lafreniere+ 2007',
@@ -127,6 +129,12 @@ data2 = [
     {'Reference':'Poleski+ 2021','Sep [AU]':'5-15', 'Sep upper':15, 'Sep lower':5, 
          'Mass [Mjup]':'0.03-3','Mass upper': 0.3, 'Mass lower':0.03, 
          'Fraction':150, 'f %':'1.5 ice giants per star', 'Upper Limit':False},
+    {'Reference':'Nielsen+ 2019','Sep [AU]':'10-100', 'Sep upper':100, 'Sep lower':10, 
+         'Mass [Mjup]':'5-13','Mass upper': 13, 'Mass lower':5, 
+         'Fraction':3.5, 'f %':'3.5$^{+1.9}_{-1.4}$', 'Upper Limit':False},
+    {'Reference':'Nielsen+ 2019','Sep [AU]':'10-100', 'Sep upper':100, 'Sep lower':10, 
+         'Mass [Mjup]':'5-80','Mass upper': 80, 'Mass lower':5, 
+         'Fraction':0.8, 'f %':'0.8$^{+0.8}_{-0.5}$', 'Upper Limit':False},
 ]
 
 df = df.append(data2)
@@ -176,7 +184,6 @@ def AddFilledRectangle(ml,mh,al,ah,lw,ls,edgecolor,facecolor,alpha):
     plt.gca().add_patch(r)
     
 from matplotlib.patches import Rectangle
-import matplotlib.pyplot as plt
 
 def MakePlot(plot_upperlimits = True, savename = 'exoplanet-occurrence-rates-version2.png',
             colormap = 'magma', ncolumns = 4, figsize=(12,8), xtxt = [0.16,0.36,0.56,0.76],
@@ -222,14 +229,14 @@ def MakePlot(plot_upperlimits = True, savename = 'exoplanet-occurrence-rates-ver
     else:
         groupx = +90
         groupy = -100
-        offsetdict = {'a':[groupx-30,groupy-10],'b':[groupx+25,groupy-10], 'c':[+10,-12],
-                      'd':[+3,-70], 'e':[+65,-25],
-                     'f':[+10,-80], 'g':[+65,-15], 'h':[+10,-70],
-                     'i':[+10,-120], 'j':[groupx+28,groupy-8], 'k':[+10,-110],
-                     'l':[groupx-18,groupy-33],
-                     'm':[+38,-10], 'n':[groupx+14,groupy-33], 'o':[groupx+22,groupy-42],
-                     'p':[+45,-12], 'q':[+14,-20],
-                     'r':[+155,-55], 's':[groupx+52,groupy-33],
+        offsetdict = {'a':[groupx-40,groupy-15],'b':[+5,-10], 'c':[+10,-12],
+                      'd':[+3,-70], 'e':[+5,-10],
+                     'f':[+5,-13], 'g':[+5,-15], 'h':[+160,-125],
+                     'i':[+10,-12], 'j':[groupx+37,groupy-15], 'k':[+20,-115],
+                     'l':[+60,-80],
+                     'm':[+38,-10], 'n':[groupx,groupy-33], 'o':[groupx+22-14,groupy-42],
+                     'p':[+45,-12], 'q':[groupx+6, groupy-14], 'r':[+5,-10], 's':[+20,-50],
+                     't':[+155,-55], 'u':[groupx+52-14,groupy-33],
                     }
         
     norm = matplotlib.colors.Normalize(vmin=color_vmin, vmax=color_vmax)
@@ -278,8 +285,8 @@ def MakePlot(plot_upperlimits = True, savename = 'exoplanet-occurrence-rates-ver
             txt = r''
             for j in range(len(df))[inds[i-1]:inds[i]]:
                 txt += str(df['Reference Letter']) + ': ' + str(df['Reference'][j]) + '\n'
-                txt += str(df['Sep [AU]'][j]) + 'AU, '+ str(df['Mass [Mjup]'][j]) +\
-                                'Mjup, ' +str(df['f %'][j]) + '\% \n'
+                txt += str(df['Sep [AU]'][j]) + ' AU, '+ str(df['Mass [Mjup]'][j]) +\
+                                ' Mjup, ' +str(df['f %'][j]) + '\% \n'
             fig.text(xtxt[i-1], 0, txt, ha='left', va='top')
     else:
         not_upper_limits = np.where(~df['Upper Limit'])[0]
@@ -295,7 +302,7 @@ def MakePlot(plot_upperlimits = True, savename = 'exoplanet-occurrence-rates-ver
             fig.text(xtxt[i-1], 0, txt, ha='left', va='top')
                 
         
-    img = plt.imshow(np.array([[0,100]]), cmap=cmap, vmin=color_vmin, vmax=color_vmax)
+    img = plt.imshow(np.array([[0,100]]), cmap=cmap, vmin=color_vmin*100, vmax=color_vmax*100)
     img.set_visible(False)
     cbar = plt.colorbar(orientation="vertical")
     cbar.ax.set_ylabel('Occurrence Rate (\%)')
