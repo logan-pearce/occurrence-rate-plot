@@ -7,7 +7,7 @@ This python script produces the plot below.
 The hard work of compiling the literature was done by <a href="https://www.linkedin.com/in/r-bowens-rubin-4402bb149/">Rachel Bowens-Rubin</a><br>
 <a href="www.loganpearcescience.com">Logan Pearce</a> made the plot pretty.<br>
 If you use it please give credit!<br>
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8244975.svg)](https://doi.org/10.5281/zenodo.8244975)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8247900.svg)](https://doi.org/10.5281/zenodo.8247900)
 
 <img src="exoplanet-occurrence-rates.png">
 
